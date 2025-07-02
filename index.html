@@ -32,16 +32,8 @@
       background: #f1f1f1;
       color: #343333;
       font-size: 20px;
-      position: relative;
-    }
-    .header-right::after {
-      content: "";
-      position: absolute;
-      height: 2px;
-      background: #343333;
-      width: 80%;
-      bottom: 10px;
-      left: 10%;
+      border: 1px solid #343333; /* tunn mörk ram */
+      box-sizing: border-box;
     }
     .instruction {
       text-align: center;
@@ -62,7 +54,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      position: relative;
       margin-bottom: 40px;
     }
     .hall-header {
@@ -70,18 +61,9 @@
       color: #f1f1f1;
       padding: 10px 30px;
       font-size: 24px;
-      margin-bottom: 0;
+      margin-bottom: 40px;
       position: relative;
       z-index: 2;
-    }
-    .line {
-      width: 2px;
-      background: #343333;
-      position: absolute;
-      top: 60px;  /* från hallrubrikens botten */
-      height: 60px; /* ändra efter truckarnas position */
-      left: 50%;
-      z-index: 1;
     }
     .truck {
       width: 220px;
@@ -118,7 +100,6 @@
   <div class="container">
     <div class="hall">
       <div class="hall-header">Gamla hallen</div>
-      <div class="line"></div>
       <div class="truck">
         <div class="truck-name">Jungheinrich</div>
         <div class="truck-type">Motviktstruck</div>
@@ -135,7 +116,6 @@
 
     <div class="hall">
       <div class="hall-header">Nya hallen</div>
-      <div class="line"></div>
       <div class="truck">
         <div class="truck-name">Toyota</div>
         <div class="truck-type">Stapeltruck</div>
