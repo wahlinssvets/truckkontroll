@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gamla hallen – Truckkontroll</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Calibri, sans-serif;
+      background: #f1f1f1;
+      color: #343333;
+    }
+    .header {
+      background: #343333;
+      color: #f1f1f1;
+      padding: 20px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .instruction {
+      text-align: center;
+      font-size: 20px;
+      margin: 30px 20px;
+      color: #343333;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .trucks-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto 60px auto;
+    }
+    .truck {
+      width: 260px; /* fast bredd för enhetliga rutor */
+      border: 1px solid #343333;
+      background: white;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+    .truck:hover {
+      transform: scale(1.05);
+    }
+    .truck-name {
+      background: #f1f1f1;
+      color: #343333;
+      padding: 10px;
+      font-weight: bold;
+      border-bottom: 1px solid #343333;
+      font-size: 22px;
+    }
+    .truck-type {
+      background: #343333;
+      color: #f1f1f1;
+      padding: 8px;
+      font-size: 18px;
+      border-bottom: 1px solid #343333;
+    }
+    .truck-capacity {
+      background: #f1f1f1;
+      color: #343333;
+      padding: 8px;
+      font-size: 16px;
+    }
+    @media (max-width: 700px) {
+      .trucks-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">Gamla hallen</div>
+
+  <p class="instruction"><strong>[Var noga med att välja rätt truck. Kontrollera vilken hall du valt, truckens namn, och kapacitet.]</strong></p>
+
+  <div class="trucks-container">
+    <a href="jungheinrich.html" class="truck">
+      <div class="truck-name">Jungheinrich</div>
+      <div class="truck-type">Motviktstruck</div>
+      <div class="truck-capacity">Kapacitet: 1,6 ton</div>
+    </a>
+    <a href="#" class="truck">
+      <div class="truck-name">Toyota</div>
+      <div class="truck-type">Stapeltruck</div>
+      <div class="truck-capacity">Kapacitet: ca 1,6 ton</div>
+    </a>
+    <a href="#" class="truck">
+      <div class="truck-name">Toyota</div>
+      <div class="truck-type">Motviktstruck</div>
+      <div class="truck-capacity">Kapacitet: 3,5 ton</div>
+    </a>
+  </div>
+
+</body>
+</html>
