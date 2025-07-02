@@ -55,14 +55,37 @@
       font-weight: bold;
       padding: 40px 60px;
       text-align: center;
-      border-radius: 0px;
+      border-radius: 0;
       cursor: pointer;
       text-decoration: none;
       transition: transform 0.2s, background 0.2s;
-      width: 200px; /* lägg till denna rad för att ge båda rutorna samma storlek */
+      width: 200px;
     }
     .hall-box:hover {
       background: #555;
+      transform: scale(1.05);
+    }
+    .admin-button-container {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .admin-box {
+      background: #f1f1f1;
+      color: #343333;
+      border: 1px solid #343333;
+      font-size: 28px;
+      font-weight: bold;
+      padding: 40px 60px;
+      text-align: center;
+      border-radius: 0;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      width: 580px;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .admin-box:hover {
+      background: #ddd;
       transform: scale(1.05);
     }
 
@@ -73,6 +96,11 @@
         gap: 30px;
       }
       .hall-box {
+        width: 80%;
+        padding: 30px 20px;
+        font-size: 24px;
+      }
+      .admin-box {
         width: 80%;
         padding: 30px 20px;
         font-size: 24px;
@@ -92,7 +120,10 @@
   <div class="halls-container">
     <a href="gamla-hallen.html" class="hall-box">Gamla hallen</a>
     <a href="nya-hallen.html" class="hall-box">Nya hallen</a>
-    <a href="admin.html" class="hall-box">[För verksamhetsledare – administratör]</a>
+  </div>
+
+  <div class="admin-button-container">
+    <a href="admin.html" class="admin-box">[För verksamhetsledare – administratör]</a>
   </div>
 
 </body>
