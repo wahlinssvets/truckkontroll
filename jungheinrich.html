@@ -196,15 +196,6 @@
   </div>
 
   <script>
-    let kontrollSkickad = false;
-
-    window.addEventListener("beforeunload", function (e) {
-      if (!kontrollSkickad) {
-        e.preventDefault();
-        e.returnValue = "";
-      }
-    });
-
     document.getElementById("current-date").textContent =
       "Dagens datum: " + new Date().toLocaleDateString('sv-SE');
 
@@ -271,6 +262,8 @@
 
     function skicka() {
       const checkpoints = document.querySelectorAll(".checkpoint");
+      let kontrollData = [];
+
       for (let cp of checkpoints) {
         const ok = cp.querySelector("input[type='checkbox'][name^='ok']");
         const avvikelse = cp.querySelector("input[type='checkbox'][name^='avvikelse']");
@@ -284,6 +277,12 @@
           alert("Du har glömt att fylla i en kommentar på en anmärkning.");
           return;
         }
+
+        kontrollData.push({
+          punkt: cp.querySelector("label").textContent,
+          resultat: ok.checked ? "OK" : (avvikelse.checked ? "Anmärkning" : "Ej markerad"),
+          kommentar: kommentar.value.trim()
+        });
       }
 
       const signaturVald = document.querySelector("input[name='signature']:checked");
@@ -292,34 +291,56 @@
         return;
       }
 
-      kontrollSkickad = true;
+      const kontrollObjekt = {
+        truck: document.querySelector(".truck-name").textContent,
+        hall: document.querySelector(".truck-hall").textContent.replace("Hall: ", ""),
+        resultat: kontrollData.some(k => k.resultat === "Anmärkning") ? "Anmärkning" : "OK",
+        kommentar: kontrollData.filter(k => k.resultat === "Anmärkning").map(k => `${k.punkt}: ${k.kommentar}`).join(" | ") || "-",
+        forare: signaturVald.value,
+        status: "Ej godkänd"
+      };
 
-      const overlay = document.createElement("div");
-      overlay.style.position = "fixed";
-      overlay.style.top = 0;
-      overlay.style.left = 0;
-      overlay.style.width = "100%";
-      overlay.style.height = "100%";
-      overlay.style.background = "rgba(0,0,0,0.5)";
-      overlay.style.display = "flex";
-      overlay.style.justifyContent = "center";
-      overlay.style.alignItems = "center";
-      overlay.style.zIndex = 1000;
+      fetch("https://script.google.com/macros/s/AKfycbwsHO3hDydSyM49lfXqI8cYBbYxmuhU0FEbYEk73SHjqqTn2txclVZ2FE4XmG8CjXvU/exec", {
+        method: "POST",
+        body: JSON.stringify(kontrollObjekt),
+        headers: {"Content-Type": "application/json"}
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === "success") {
+          const overlay = document.createElement("div");
+          overlay.style.position = "fixed";
+          overlay.style.top = 0;
+          overlay.style.left = 0;
+          overlay.style.width = "100%";
+          overlay.style.height = "100%";
+          overlay.style.background = "rgba(0,0,0,0.5)";
+          overlay.style.display = "flex";
+          overlay.style.justifyContent = "center";
+          overlay.style.alignItems = "center";
+          overlay.style.zIndex = 1000;
 
-      const box = document.createElement("div");
-      box.style.background = "#fff";
-      box.style.padding = "30px";
-      box.style.border = "2px solid #343333";
-      box.style.textAlign = "center";
-      box.style.fontSize = "20px";
-      box.innerHTML = "<p>Kontrollen är skickad. Tack!</p><p>Du blir nu omdirigerad till startsidan.</p>";
+          const box = document.createElement("div");
+          box.style.background = "#fff";
+          box.style.padding = "30px";
+          box.style.border = "2px solid #343333";
+          box.style.textAlign = "center";
+          box.style.fontSize = "20px";
+          box.innerHTML = "<p>Kontrollen är skickad. Tack!</p><p>Du blir nu omdirigerad till startsidan.</p>";
 
-      overlay.appendChild(box);
-      document.body.appendChild(overlay);
+          overlay.appendChild(box);
+          document.body.appendChild(overlay);
 
-      setTimeout(() => {
-        window.location.href = "index.html";
-      }, 3000);
+          setTimeout(() => {
+            window.location.href = "index.html";
+          }, 3000);
+        } else {
+          alert("Något gick fel vid inskickningen: " + data.message);
+        }
+      })
+      .catch(error => {
+        alert("Fel vid anslutning: " + error);
+      });
     }
   </script>
 </body>
