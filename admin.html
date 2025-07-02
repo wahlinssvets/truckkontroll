@@ -23,7 +23,7 @@
     .instruction {
       text-align: center;
       font-size: 18px;
-      margin: 20px 0 40px 0;
+      margin: 20px 0 30px 0;
       color: #343333;
       max-width: 800px;
       margin-left: auto;
@@ -53,6 +53,10 @@
     td {
       background: white;
       font-size: 16px;
+    }
+    tr.clickable-row:hover {
+      background: #dfe6ec;
+      cursor: pointer;
     }
     .status-godkand {
       color: green;
@@ -86,6 +90,7 @@
 
   <h2>Truckkontroller – Vecka 27 (1 juli – 5 juli)</h2>
 
+  <!-- Veckosammanfattning -->
   <table>
     <thead>
       <tr>
@@ -108,38 +113,49 @@
         <td class="status-ejgodkand">Ej godkänd</td>
         <td>❌ Ej utförd Ons</td>
       </tr>
-      <tr>
-        <td>Toyota Stapeltruck G.H.</td>
-        <td>Gamla hallen</td>
-        <td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td>
-        <td class="status-godkand">Godkänd</td>
-        <td>✅ Inga anmärkningar</td>
-      </tr>
-      <tr>
-        <td>Toyota Motviktstruck 3,5t</td>
-        <td>Gamla hallen</td>
-        <td>✅</td><td>⚠️</td><td>✅</td><td>✅</td><td>✅</td>
-        <td class="status-ejgodkand">Ej godkänd</td>
-        <td>⚠️ Anmärkning Tis <a href="#">Visa</a></td>
-      </tr>
-      <tr>
-        <td>Toyota Stapeltruck N.H.</td>
-        <td>Nya hallen</td>
-        <td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td>
-        <td class="status-godkand">Godkänd</td>
-        <td>✅ Inga anmärkningar</td>
-      </tr>
-      <tr>
-        <td>Toyota Motviktstruck 1,6t N.H.</td>
-        <td>Nya hallen</td>
-        <td>✅</td><td>❌</td><td>✅</td><td>✅</td><td>✅</td>
-        <td class="status-ejgodkand">Ej godkänd</td>
-        <td>❌ Ej utförd Tis</td>
-      </tr>
     </tbody>
   </table>
 
   <button class="week-button">Markera veckan som godkänd</button>
 
+  <h2>Kontroller denna vecka</h2>
+
+  <!-- Kontroll-logg -->
+  <table>
+    <thead>
+      <tr>
+        <th>Datum</th>
+        <th>Truck</th>
+        <th>Resultat</th>
+        <th>Kommentar</th>
+        <th>Förarens namn</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="clickable-row">
+        <td>2025-07-01</td>
+        <td>Jungheinrich</td>
+        <td>✅ OK</td>
+        <td>-</td>
+        <td>David Gunnarsson</td>
+      </tr>
+      <tr class="clickable-row">
+        <td>2025-07-02</td>
+        <td>Jungheinrich</td>
+        <td>⚠️ Anmärkning</td>
+        <td>Hydraulikläcka upptäckt, åtgärdad samma dag.</td>
+        <td>Henrik Johansson</td>
+      </tr>
+      <tr class="clickable-row">
+        <td>2025-07-03</td>
+        <td>Toyota Motviktstruck 3,5t</td>
+        <td>❌ Ej utförd</td>
+        <td>Trucken användes ej.</td>
+        <td>-</td>
+      </tr>
+    </tbody>
+  </table>
+
 </body>
 </html>
+
