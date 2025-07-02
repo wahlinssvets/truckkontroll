@@ -51,17 +51,16 @@
       color: #343333;
       padding: 8px;
       font-size: 16px;
-    }  
-      .guide-hint {
-  text-align: center;
-  font-size: 18px;
-  margin: 20px 0 40px 0;
-  color: #343333;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  font-weight: bold;
-}
+    }
+    .guide-hint {
+      text-align: center;
+      font-size: 18px;
+      margin: 20px 0 40px 0;
+      color: #343333;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: bold;
     }
     .checklist {
       max-width: 800px;
@@ -151,8 +150,8 @@
     <div class="truck-type">Motviktstruck</div>
     <div class="truck-capacity">Kapacitet: 1,6 ton</div>
   </div>
-  
-<p class="guide-hint">Guide för hur du utför kontrollen finns längre ner på denna sida.</p>
+
+  <p class="guide-hint">Guide för hur du utför kontrollen finns längre ner på denna sida.</p>
 
   <div class="checklist" id="checklist"></div>
 
@@ -169,13 +168,22 @@
 
   <div class="guide" id="guide">
     <h2>Guide för truckkontroll</h2>
-    <p><strong>Syfte:</strong> Denna guide beskriver varför och hur dagliga kontroller av truckar ska utföras. Kontrollerna är ett lagkrav enligt AFS 2006:6 och en del av företagets kvalitets- och arbetsmiljöarbete enligt FR2000. Syftet är att säkerställa att truckarna är säkra att använda varje dag, att upptäcka fel i tid och att åtgärder dokumenteras.</p>
-    <p><strong>Daglig kontroll – utförs av truckföraren:</strong> Kontrollera varje punkt och markera “OK” eller “Anmärkning”. Vid anmärkning ska kommentar fyllas i. Avsluta med att signera kontrollen.</p>
+    <p><strong>Syfte:</strong> Denna guide beskriver varför och hur dagliga kontroller av truckar ska utföras. Kontrollerna är ett lagkrav enligt AFS 2006:6 och en del av företagets kvalitets- och arbetsmiljöarbete enligt FR2000.</p>
+    <p><strong>Daglig kontroll:</strong> Kontrollera varje punkt nedan och markera “OK” eller “Anmärkning”. Vid anmärkning ska kommentar fyllas i. Avsluta med att signera kontrollen.</p>
     <p><strong>Viktigt att veta:</strong> Daglig kontroll ska fyllas i varje dag trucken används. Om trucken inte används en dag ska det markeras som “Ej använd” i systemet – detta ansvarar föraren eller verksamhetsledaren för. Denna guide finns alltid via QR-koden i trucken.</p>
     <p><strong>Vid frågor eller fel på trucken:</strong> Kontakta Lars-Ove Carlson (Verksamhetsledare) 070-8307426.</p>
   </div>
 
   <script>
+    let kontrollSkickad = false;
+
+    window.addEventListener("beforeunload", function (e) {
+      if (!kontrollSkickad) {
+        e.preventDefault();
+        e.returnValue = "";
+      }
+    });
+
     document.getElementById("current-date").textContent =
       "Dagens datum: " + new Date().toLocaleDateString('sv-SE');
 
@@ -241,26 +249,57 @@
     });
 
     function skicka() {
-  const checkpoints = document.querySelectorAll(".checkpoint");
-  for (let cp of checkpoints) {
-    const ok = cp.querySelector("input[type='checkbox'][name^='ok']");
-    const avvikelse = cp.querySelector("input[type='checkbox'][name^='avvikelse']");
-    const kommentar = cp.querySelector("textarea");
+      const checkpoints = document.querySelectorAll(".checkpoint");
+      for (let cp of checkpoints) {
+        const ok = cp.querySelector("input[type='checkbox'][name^='ok']");
+        const avvikelse = cp.querySelector("input[type='checkbox'][name^='avvikelse']");
+        const kommentar = cp.querySelector("textarea");
 
-    // Kontrollera om varken OK eller Anmärkning är ikryssad
-    if (!ok.checked && !avvikelse.checked) {
-      alert("Du har glömt att fylla i en kontrollpunkt. Markera OK eller Anmärkning på alla punkter innan du skickar in.");
-      return;
-    }
+        if (!ok.checked && !avvikelse.checked) {
+          alert("Du har glömt att fylla i en kontrollpunkt. Markera OK eller Anmärkning på alla punkter innan du skickar in.");
+          return;
+        }
+        if (avvikelse.checked && kommentar.value.trim() === "") {
+          alert("Du har glömt att fylla i en kommentar på en anmärkning.");
+          return;
+        }
+      }
 
-    // Kontrollera om Anmärkning är ikryssad men kommentar saknas
-    if (avvikelse.checked && kommentar.value.trim() === "") {
-      alert("Du har glömt att fylla i en kommentar på en anmärkning.");
-      return;
+      const signaturVald = document.querySelector("input[name='signature']:checked");
+      if (!signaturVald) {
+        alert("Du måste välja vem som har utfört kontrollen innan du skickar in.");
+        return;
+      }
+
+      kontrollSkickad = true;
+
+      const overlay = document.createElement("div");
+      overlay.style.position = "fixed";
+      overlay.style.top = 0;
+      overlay.style.left = 0;
+      overlay.style.width = "100%";
+      overlay.style.height = "100%";
+      overlay.style.background = "rgba(0,0,0,0.5)";
+      overlay.style.display = "flex";
+      overlay.style.justifyContent = "center";
+      overlay.style.alignItems = "center";
+      overlay.style.zIndex = 1000;
+
+      const box = document.createElement("div");
+      box.style.background = "#fff";
+      box.style.padding = "30px";
+      box.style.border = "2px solid #343333";
+      box.style.textAlign = "center";
+      box.style.fontSize = "20px";
+      box.innerHTML = "<p>Kontrollen är skickad. Tack!</p><p>Du blir nu omdirigerad till startsidan.</p>";
+
+      overlay.appendChild(box);
+      document.body.appendChild(overlay);
+
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 3000);
     }
-  }
-  alert("Dina svar har registrerats (simulerat)!");
-}
   </script>
 </body>
 </html>
