@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin – Truckkontroll</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Calibri, sans-serif;
+      background: #f1f1f1;
+      color: #343333;
+      padding: 20px;
+    }
+    .header {
+      background: #343333;
+      color: #f1f1f1;
+      padding: 20px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .instruction {
+      text-align: center;
+      font-size: 18px;
+      margin: 20px 0 40px 0;
+      color: #343333;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      }
+    h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 30px;
+    }
+    table {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto 60px auto;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #343333;
+      padding: 12px;
+      text-align: center;
+    }
+    th {
+      background: #343333;
+      color: #f1f1f1;
+      font-size: 18px;
+    }
+    td {
+      background: white;
+      font-size: 16px;
+    }
+    .status-godkand {
+      color: green;
+      font-weight: bold;
+    }
+    .status-ejgodkand {
+      color: red;
+      font-weight: bold;
+    }
+    .week-button {
+      display: block;
+      margin: 0 auto;
+      padding: 15px 30px;
+      font-size: 20px;
+      background: #4F81BD;
+      color: white;
+      border: none;
+      border-radius: 0;
+      cursor: pointer;
+    }
+    .week-button:hover {
+      background: #355d8a;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">Admin – Truckkontroll</div>
+
+  <p class="instruction">Denna sida används av verksamhetsledaren för att följa upp dagliga och veckovisa kontroller. Status för varje truck visas nedan. Klicka på knappen för att markera veckans kontroller som godkända när alla är kontrollerade eller korrekt markerade som Ej använd.</p>
+
+  <h2>Truckkontroller – Vecka 27 (1 juli – 5 juli)</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Truck</th>
+        <th>Hall</th>
+        <th>Mån</th>
+        <th>Tis</th>
+        <th>Ons</th>
+        <th>Tor</th>
+        <th>Fre</th>
+        <th>Veckostatus</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Jungheinrich</td>
+        <td>Gamla hallen</td>
+        <td>✅</td><td>✅</td><td>❌</td><td>✅</td><td>✅</td>
+        <td class="status-ejgodkand">Ej godkänd</td>
+      </tr>
+      <tr>
+        <td>Toyota Stapeltruck G.H.</td>
+        <td>Gamla hallen</td>
+        <td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td>
+        <td class="status-godkand">Godkänd</td>
+      </tr>
+      <tr>
+        <td>Toyota Motviktstruck 3,5t</td>
+        <td>Gamla hallen</td>
+        <td>✅</td><td>❌</td><td>✅</td><td>✅</td><td>✅</td>
+        <td class="status-ejgodkand">Ej godkänd</td>
+      </tr>
+      <tr>
+        <td>Toyota Stapeltruck N.H.</td>
+        <td>Nya hallen</td>
+        <td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td>
+        <td class="status-godkand">Godkänd</td>
+      </tr>
+      <tr>
+        <td>Toyota Motviktstruck 1,6t N.H.</td>
+        <td>Nya hallen</td>
+        <td>✅</td><td>❌</td><td>✅</td><td>✅</td><td>✅</td>
+        <td class="status-ejgodkand">Ej godkänd</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="week-button">Markera veckan som godkänd</button>
+
+</body>
+</html>
