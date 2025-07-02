@@ -6,68 +6,136 @@
   <title>Truckkontroll – Wåhlins Svets</title>
   <style>
     body {
-      font-family: Calibri, sans-serif;
       margin: 0;
-      padding: 40px 20px;
-      background: #fff;
-      color: #333;
+      font-family: Calibri, sans-serif;
+      background: #f1f1f1; /* Ljusgrå bakgrund */
+      color: #343333;
     }
-    .hall-section {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-    .hall-section h2 {
-      font-size: 32px;
-      color: #003366;
-      margin-bottom: 30px;
-      border-bottom: 2px solid #003366;
-      display: inline-block;
-      padding-bottom: 10px;
-    }
-    .truck-list {
+    .header {
       display: flex;
-      flex-direction: column;
-      gap: 20px;
-      margin-top: 20px;
+      width: 100%;
+      height: 80px;
     }
-    .truck-item {
-      font-size: 22px;
-      color: #000;
-      text-decoration: none;
+    .header-left {
+      flex: 1;
+      background: #343333; /* Mörkgrå */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 28px;
       font-weight: bold;
     }
-    .truck-item:hover {
-      text-decoration: underline;
+    .header-right {
+      flex: 1;
+      background: #f1f1f1; /* Ljusgrå */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #343333;
+      font-size: 28px;
+      font-weight: bold;
+      border-left: 2px solid #343333;
     }
     .instruction {
       text-align: center;
       font-size: 20px;
-      margin-top: 80px;
-      color: #333;
+      margin: 40px 0;
+      color: #343333;
+    }
+    .container {
+      display: flex;
+      justify-content: space-around;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-bottom: 60px;
+    }
+    .hall {
+      width: 45%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .hall-header {
+      background: #343333;
+      color: #f1f1f1;
+      padding: 10px 30px;
+      font-size: 24px;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 2;
+    }
+    .line {
+      width: 2px;
+      background: #343333;
+      position: absolute;
+      top: 60px;
+      bottom: 0;
+      left: 50%;
+      z-index: 1;
+    }
+    .truck {
+      width: 220px;
+      border: 1px solid #343333;
+      margin: 20px 0;
+      text-align: center;
+      cursor: pointer;
+    }
+    .truck-name {
+      background: #f1f1f1;
+      color: #343333;
+      padding: 8px;
       font-weight: bold;
+      border-bottom: 1px solid #343333;
+    }
+    .truck-type {
+      background: #343333;
+      color: #f1f1f1;
+      padding: 8px;
     }
   </style>
 </head>
 <body>
 
-  <div class="hall-section">
-    <h2>Gamla hallen</h2>
-    <div class="truck-list">
-      <a class="truck-item" href="#">✅ Jungheinrich Motviktstruck 1.6 ton</a>
-      <a class="truck-item" href="#">✅ Toyota Stapeltruck G.H.</a>
-      <a class="truck-item" href="#">✅ Toyota Motviktstruck 3.5 ton</a>
-    </div>
+  <div class="header">
+    <div class="header-left">Wåhlins Svets</div>
+    <div class="header-right">Truckkontroll</div>
   </div>
 
-  <div class="hall-section">
-    <h2>Nya hallen</h2>
-    <div class="truck-list">
-      <a class="truck-item" href="#">✅ Toyota Stapeltruck N.H.</a>
-      <a class="truck-item" href="#">✅ Toyota Motviktstruck 1.6 ton N.H.</a>
+  <p class="instruction">[Tryck på den truck du ska göra truckkontrollen på]</p>
+
+  <div class="container">
+    <div class="hall">
+      <div class="hall-header">Gamla hallen</div>
+      <div class="line"></div>
+      <div class="truck">
+        <div class="truck-name">Jungheinrich</div>
+        <div class="truck-type">Motviktstruck</div>
+      </div>
+      <div class="truck">
+        <div class="truck-name">Toyota</div>
+        <div class="truck-type">Stapeltruck</div>
+      </div>
+      <div class="truck">
+        <div class="truck-name">Toyota</div>
+        <div class="truck-type">Motviktstruck</div>
+      </div>
+    </div>
+
+    <div class="hall">
+      <div class="hall-header">Nya hallen</div>
+      <div class="line"></div>
+      <div class="truck">
+        <div class="truck-name">Toyota</div>
+        <div class="truck-type">Stapeltruck</div>
+      </div>
+      <div class="truck">
+        <div class="truck-name">Toyota</div>
+        <div class="truck-type">Motviktstruck</div>
+      </div>
     </div>
   </div>
-
-  <p class="instruction">Tryck på den truck du ska göra truckkontrollen på</p>
 
 </body>
 </html>
