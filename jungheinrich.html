@@ -241,17 +241,26 @@
     });
 
     function skicka() {
-      const checkpoints = document.querySelectorAll(".checkpoint");
-      for (let cp of checkpoints) {
-        const avvikelse = cp.querySelector("input[type='checkbox'][name^='avvikelse']");
-        const kommentar = cp.querySelector("textarea");
-        if (avvikelse.checked && kommentar.value.trim() === "") {
-          alert("Du har glömt att fylla i en kommentar på en anmärkning.");
-          return;
-        }
-      }
-      alert("Dina svar har registrerats (simulerat)!");
+  const checkpoints = document.querySelectorAll(".checkpoint");
+  for (let cp of checkpoints) {
+    const ok = cp.querySelector("input[type='checkbox'][name^='ok']");
+    const avvikelse = cp.querySelector("input[type='checkbox'][name^='avvikelse']");
+    const kommentar = cp.querySelector("textarea");
+
+    // Kontrollera om varken OK eller Anmärkning är ikryssad
+    if (!ok.checked && !avvikelse.checked) {
+      alert("Du har glömt att fylla i en kontrollpunkt. Markera OK eller Anmärkning på alla punkter innan du skickar in.");
+      return;
     }
+
+    // Kontrollera om Anmärkning är ikryssad men kommentar saknas
+    if (avvikelse.checked && kommentar.value.trim() === "") {
+      alert("Du har glömt att fylla i en kommentar på en anmärkning.");
+      return;
+    }
+  }
+  alert("Dina svar har registrerats (simulerat)!");
+}
   </script>
 </body>
 </html>
