@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Truckkontroll</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Calibri, sans-serif;
+      background: #f1f1f1;
+      color: #343333;
+      padding: 20px;
+    }
+    .header {
+      background: #343333;
+      color: #f1f1f1;
+      padding: 20px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .date {
+      text-align: center;
+      font-size: 20px;
+      margin: 20px 0 40px 0;
+    }
+    .truck-info {
+      width: 300px;
+      border: 1px solid #343333;
+      margin: 0 auto 40px auto;
+      text-align: center;
+    }
+    .truck-name {
+      background: #f1f1f1;
+      color: #343333;
+      padding: 10px;
+      font-weight: bold;
+      border-bottom: 1px solid #343333;
+      font-size: 22px;
+    }
+    .truck-type {
+      background: #343333;
+      color: #f1f1f1;
+      padding: 8px;
+      font-size: 18px;
+      border-bottom: 1px solid #343333;
+    }
+    .truck-capacity {
+      background: #f1f1f1;
+      color: #343333;
+      padding: 8px;
+      font-size: 16px;
+    }  
+      .guide-hint {
+  text-align: center;
+  font-size: 18px;
+  margin: 20px 0 40px 0;
+  color: #343333;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: bold;
+}
+    }
+    .checklist {
+      max-width: 800px;
+      margin: 0 auto 40px auto;
+    }
+    .checkpoint {
+      background: white;
+      border: 1px solid #343333;
+      margin-bottom: 20px;
+      padding: 15px;
+      border-radius: 0;
+    }
+    .checkpoint label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .options {
+      margin-bottom: 10px;
+    }
+    .options label {
+      margin-right: 20px;
+      font-weight: normal;
+    }
+    textarea {
+      width: 100%;
+      padding: 8px;
+      border-radius: 0;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+    input[type="checkbox"] {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+    }
+    .signature {
+      max-width: 800px;
+      margin: 40px auto;
+      text-align: center;
+    }
+    .signature label {
+      margin-right: 15px;
+      font-size: 18px;
+    }
+    .submit-button {
+      display: block;
+      margin: 40px auto;
+      padding: 15px 30px;
+      font-size: 20px;
+      background: #4F81BD;
+      color: white;
+      border: none;
+      border-radius: 0;
+      cursor: pointer;
+    }
+    .submit-button:hover {
+      background: #355d8a;
+    }
+    .guide {
+      max-width: 800px;
+      margin: 60px auto;
+      background: white;
+      border: 1px solid #343333;
+      padding: 20px;
+    }
+    .guide h2 {
+      color: #003366;
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .guide p {
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">Truckkontroll</div>
+
+  <div class="date" id="current-date"></div>
+
+  <div class="truck-info">
+    <div class="truck-name">Jungheinrich</div>
+    <div class="truck-type">Motviktstruck</div>
+    <div class="truck-capacity">Kapacitet: 1,6 ton</div>
+  </div>
+  
+<p class="guide-hint">Guide för hur du utför kontrollen finns längre ner på denna sida.</p>
+
+  <div class="checklist" id="checklist"></div>
+
+  <div class="signature">
+    <p style="font-weight:bold;">Välj vem som utförde kontrollen:</p>
+    <label><input type="radio" name="signature" value="David Gunnarsson"> David Gunnarsson</label>
+    <label><input type="radio" name="signature" value="Henrik Johansson"> Henrik Johansson</label>
+    <label><input type="radio" name="signature" value="Kalle Brax"> Kalle Brax</label>
+    <label><input type="radio" name="signature" value="Lars-Ove Carlson"> Lars-Ove Carlson</label>
+    <label><input type="radio" name="signature" value="Robbin Fransson"> Robbin Fransson</label>
+  </div>
+
+  <button class="submit-button" onclick="skicka()">Skicka in</button>
+
+  <div class="guide" id="guide">
+    <h2>Guide för truckkontroll</h2>
+    <p><strong>Syfte:</strong> Denna guide beskriver varför och hur dagliga kontroller av truckar ska utföras. Kontrollerna är ett lagkrav enligt AFS 2006:6 och en del av företagets kvalitets- och arbetsmiljöarbete enligt FR2000. Syftet är att säkerställa att truckarna är säkra att använda varje dag, att upptäcka fel i tid och att åtgärder dokumenteras.</p>
+    <p><strong>Daglig kontroll – utförs av truckföraren:</strong> Kontrollera varje punkt och markera “OK” eller “Anmärkning”. Vid anmärkning ska kommentar fyllas i. Avsluta med att signera kontrollen.</p>
+    <p><strong>Viktigt att veta:</strong> Daglig kontroll görs endast de dagar trucken används. Står trucken oanvänd ska kontrollen ändå fyllas i med “Ej använd”. Denna guide och checklistan finns alltid tillgängliga via QR-koden i trucken.</p>
+    <p><strong>Vid frågor eller fel på trucken:</strong> Kontakta Lars-Ove Carlson (Verksamhetsledare) 070-8307426.</p>
+  </div>
+
+  <script>
+    document.getElementById("current-date").textContent =
+      "Dagens datum: " + new Date().toLocaleDateString('sv-SE');
+
+    const punkter = [
+      "Säkerhetsbälte och nödstopp fungerar.",
+      "Signalhorn fungerar.",
+      "Gafflar är oskadade och sitter fast.",
+      "Lyftsystem fungerar smidigt utan ryck eller ovanliga ljud.",
+      "Däck är hela, utan sprickor eller onormalt slitage.",
+      "Styrning fungerar utan problem.",
+      "Bromsar fungerar korrekt.",
+      "Det finns tillräckligt med bränsle eller laddning för planerat arbete.",
+      "Leta efter oljeläckage eller andra läckor under trucken."
+    ];
+
+    const checklistDiv = document.getElementById("checklist");
+
+    punkter.forEach((punkt, i) => {
+      const div = document.createElement("div");
+      div.className = "checkpoint";
+
+      const label = document.createElement("label");
+      label.textContent = punkt;
+      div.appendChild(label);
+
+      const options = document.createElement("div");
+      options.className = "options";
+
+      const ok = document.createElement("input");
+      ok.type = "checkbox";
+      ok.name = `ok_${i}`;
+      ok.addEventListener("change", () => {
+        if (ok.checked) {
+          avvikelse.disabled = true;
+          kommentar.disabled = true;
+        } else {
+          avvikelse.disabled = false;
+          kommentar.disabled = false;
+        }
+      });
+      const okLabel = document.createElement("label");
+      okLabel.appendChild(ok);
+      okLabel.append(" OK");
+
+      const avvikelse = document.createElement("input");
+      avvikelse.type = "checkbox";
+      avvikelse.name = `avvikelse_${i}`;
+      const avvikelseLabel = document.createElement("label");
+      avvikelseLabel.appendChild(avvikelse);
+      avvikelseLabel.append(" Anmärkning");
+
+      options.appendChild(okLabel);
+      options.appendChild(avvikelseLabel);
+
+      div.appendChild(options);
+
+      const kommentar = document.createElement("textarea");
+      kommentar.placeholder = "Kommentar (vid anmärkning)";
+      kommentar.name = `kommentar_${i}`;
+      div.appendChild(kommentar);
+
+      checklistDiv.appendChild(div);
+    });
+
+    function skicka() {
+      const checkpoints = document.querySelectorAll(".checkpoint");
+      for (let cp of checkpoints) {
+        const avvikelse = cp.querySelector("input[type='checkbox'][name^='avvikelse']");
+        const kommentar = cp.querySelector("textarea");
+        if (avvikelse.checked && kommentar.value.trim() === "") {
+          alert("Du har glömt att fylla i en kommentar på en anmärkning.");
+          return;
+        }
+      }
+      alert("Dina svar har registrerats (simulerat)!");
+    }
+  </script>
+</body>
+</html>
