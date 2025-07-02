@@ -29,10 +29,33 @@
       margin-left: auto;
       margin-right: auto;
     }
+    .admin-guide {
+      text-align: left;
+      font-size: 16px;
+      margin: 30px auto;
+      color: #343333;
+      max-width: 800px;
+      line-height: 1.6;
+      background: #ffffff;
+      padding: 20px;
+      border: 1px solid #343333;
+    }
     h2 {
       text-align: center;
       font-size: 24px;
-      margin: 30px 0;
+      margin: 30px 0 10px 0;
+    }
+    .week-status {
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+    .status-pending {
+      color: red;
+    }
+    .status-approved {
+      color: green;
     }
     table {
       width: 100%;
@@ -66,19 +89,19 @@
       color: red;
       font-weight: bold;
     }
-    .week-button {
-      display: block;
-      margin: 0 auto;
+    .log-button {
+      display: inline-block;
       padding: 15px 30px;
       font-size: 20px;
-      background: #4F81BD;
-      color: white;
-      border: none;
+      background: #343333;
+      color: #f1f1f1;
+      text-decoration: none;
       border-radius: 0;
-      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
     }
-    .week-button:hover {
-      background: #355d8a;
+    .log-button:hover {
+      background: #555;
+      transform: scale(1.05);
     }
   </style>
 </head>
@@ -86,11 +109,24 @@
 
   <div class="header">Admin – Truckkontroll</div>
 
-  <p class="instruction">Denna sida används av verksamhetsledaren för att följa upp dagliga och veckovisa kontroller. Status för varje truck visas nedan. Klicka på knappen för att markera veckans kontroller som godkända när alla är kontrollerade eller korrekt markerade som Ej använd.</p>
+  <p class="instruction">Denna sida används av verksamhetsledaren för att följa upp dagliga och veckovisa kontroller. Klicka på en rad i kontrollistan för att se detaljer och redigera status vid behov. När alla kontroller är godkända uppdateras veckans status automatiskt.</p>
+
+  <p class="admin-guide">
+    📘 <strong>Guide till admin-sidan:</strong><br><br>
+    • <strong>Denna sida</strong> används av verksamhetsledaren för att följa upp dagliga och veckovisa kontroller av alla truckar.<br><br>
+
+    • <strong>Status-raden</strong> ("Status: Godkänd" eller "Status: Behöver godkännas") visar om alla truckkontroller är godkända för veckan. Om det finns kontroller som inte är godkända visas “Behöver godkännas”.<br><br>
+
+    • <strong>Truckkontroller – Vecka</strong> visar en sammanfattning av alla truckar för den aktuella veckan, med kontrollstatus för varje dag. Här ser du snabbt vilka truckar som har haft kontroller varje vardag, och om det finns några dagar där kontrollen inte är utförd eller har en anmärkning.<br><br>
+
+    • <strong>Kontroller som kräver åtgärd</strong> är en lista som bara visar de kontroller som behöver godkännas eller åtgärdas, till exempel kontroller som inte gjorts eller som innehåller en anmärkning. Klicka på en rad i listan för att se detaljer eller uppdatera status och kommentarer.<br><br>
+
+    • <strong>Knappen längst ner</strong> “📄 Öppna alla kontroller” ger tillgång till hela loggen av kontroller i systemet. Där kan du se vem som gjort kontrollerna och alla kommentarer för samtliga dagar, om du behöver göra en mer detaljerad granskning.
+  </p>
 
   <h2>Truckkontroller – Vecka 27 (1 juli – 5 juli)</h2>
+  <p class="week-status status-pending">Status: Behöver godkännas</p>
 
-  <!-- Veckosammanfattning -->
   <table>
     <thead>
       <tr>
@@ -113,14 +149,18 @@
         <td class="status-ejgodkand">Ej godkänd</td>
         <td>❌ Ej utförd Ons</td>
       </tr>
+      <tr>
+        <td>Toyota Motviktstruck 3,5t</td>
+        <td>Gamla hallen</td>
+        <td>✅</td><td>⚠️</td><td>✅</td><td>✅</td><td>✅</td>
+        <td class="status-ejgodkand">Ej godkänd</td>
+        <td>⚠️ Anmärkning Tis</td>
+      </tr>
     </tbody>
   </table>
 
-  <button class="week-button">Markera veckan som godkänd</button>
+  <h2>Kontroller som kräver åtgärd denna vecka</h2>
 
-  <h2>Kontroller denna vecka</h2>
-
-  <!-- Kontroll-logg -->
   <table>
     <thead>
       <tr>
@@ -133,13 +173,6 @@
     </thead>
     <tbody>
       <tr class="clickable-row">
-        <td>2025-07-01</td>
-        <td>Jungheinrich</td>
-        <td>✅ OK</td>
-        <td>-</td>
-        <td>David Gunnarsson</td>
-      </tr>
-      <tr class="clickable-row">
         <td>2025-07-02</td>
         <td>Jungheinrich</td>
         <td>⚠️ Anmärkning</td>
@@ -148,14 +181,24 @@
       </tr>
       <tr class="clickable-row">
         <td>2025-07-03</td>
-        <td>Toyota Motviktstruck 3,5t</td>
+        <td>Jungheinrich</td>
         <td>❌ Ej utförd</td>
         <td>Trucken användes ej.</td>
         <td>-</td>
       </tr>
+      <tr class="clickable-row">
+        <td>2025-07-02</td>
+        <td>Toyota Motviktstruck 3,5t</td>
+        <td>⚠️ Anmärkning</td>
+        <td>Spricka i gaffel upptäckt, åtgärd krävs.</td>
+        <td>Henrik Johansson</td>
+      </tr>
     </tbody>
   </table>
 
+  <div style="text-align:center; margin-top:40px;">
+    <a href="https://docs.google.com/spreadsheets/d/EXEMPEL-ID" target="_blank" class="log-button">📄 Öppna alla kontroller</a>
+  </div>
+
 </body>
 </html>
-
