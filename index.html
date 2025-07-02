@@ -32,7 +32,7 @@
       background: #f1f1f1;
       color: #343333;
       font-size: 20px;
-      border: 1px solid #343333; /* tunn mörk ram */
+      border: 1px solid #343333;
       box-sizing: border-box;
     }
     .instruction {
@@ -41,50 +41,41 @@
       margin: 40px 0;
       color: #343333;
     }
-    .container {
+    .halls-container {
       display: flex;
-      justify-content: space-around;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding-bottom: 60px;
+      justify-content: center;
+      gap: 60px;
       flex-wrap: wrap;
+      margin-bottom: 60px;
     }
-    .hall {
-      width: 45%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 40px;
-    }
-    .hall-header {
+    .hall-box {
       background: #343333;
       color: #f1f1f1;
-      padding: 10px 30px;
-      font-size: 24px;
-      margin-bottom: 40px;
-      position: relative;
-      z-index: 2;
-    }
-    .truck {
-      width: 220px;
-      border: 1px solid #343333;
-      margin: 20px 0;
-      text-align: center;
-      cursor: pointer;
-      position: relative;
-      z-index: 2;
-    }
-    .truck-name {
-      background: #f1f1f1;
-      color: #343333;
-      padding: 8px;
+      font-size: 28px;
       font-weight: bold;
-      border-bottom: 1px solid #343333;
+      padding: 40px 60px;
+      text-align: center;
+      border-radius: 0px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s, background 0.2s;
     }
-    .truck-type {
-      background: #343333;
-      color: #f1f1f1;
-      padding: 8px;
+    .hall-box:hover {
+      background: #555;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 600px) {
+      .halls-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+      }
+      .hall-box {
+        width: 80%;
+        padding: 30px 20px;
+        font-size: 24px;
+      }
     }
   </style>
 </head>
@@ -95,36 +86,11 @@
     <div class="header-right">Truckkontroll</div>
   </div>
 
-  <p class="instruction">[Tryck på den truck du ska göra truckkontrollen på]</p>
+  <p class="instruction">[Tryck på den hall du befinner dig i]</p>
 
-  <div class="container">
-    <div class="hall">
-      <div class="hall-header">Gamla hallen</div>
-      <div class="truck">
-        <div class="truck-name">Jungheinrich</div>
-        <div class="truck-type">Motviktstruck</div>
-      </div>
-      <div class="truck">
-        <div class="truck-name">Toyota</div>
-        <div class="truck-type">Stapeltruck</div>
-      </div>
-      <div class="truck">
-        <div class="truck-name">Toyota</div>
-        <div class="truck-type">Motviktstruck</div>
-      </div>
-    </div>
-
-    <div class="hall">
-      <div class="hall-header">Nya hallen</div>
-      <div class="truck">
-        <div class="truck-name">Toyota</div>
-        <div class="truck-type">Stapeltruck</div>
-      </div>
-      <div class="truck">
-        <div class="truck-name">Toyota</div>
-        <div class="truck-type">Motviktstruck</div>
-      </div>
-    </div>
+  <div class="halls-container">
+    <a href="gamla-hallen.html" class="hall-box">Gamla hallen</a>
+    <a href="nya-hallen.html" class="hall-box">Nya hallen</a>
   </div>
 
 </body>
