@@ -23,7 +23,14 @@
     .date {
       text-align: center;
       font-size: 20px;
-      margin: 20px 0 40px 0;
+      margin: 20px 0 20px 0;
+    }
+    .truck-warning {
+      text-align: center;
+      color: #b20000;
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 30px;
     }
     .truck-info {
       width: 300px;
@@ -47,6 +54,17 @@
       border-bottom: 1px solid #343333;
     }
     .truck-capacity {
+      background: #f1f1f1;
+      color: #343333;
+      padding: 8px;
+      font-size: 16px;
+    }
+    .truck-divider {
+      border: none;
+      border-top: 1px solid #343333;
+      margin: 0;
+    }
+    .truck-hall {
       background: #f1f1f1;
       color: #343333;
       padding: 8px;
@@ -144,11 +162,13 @@
   <div class="header">Truckkontroll</div>
 
   <div class="date" id="current-date"></div>
+  <p class="truck-warning">⚠️ Dubbelkolla att du valt rätt truck i rätt hall!</p>
 
   <div class="truck-info">
     <div class="truck-name">Jungheinrich</div>
     <div class="truck-type">Motviktstruck</div>
     <div class="truck-capacity">Kapacitet: 1,6 ton</div>
+    <hr class="truck-divider">
     <div class="truck-hall">Hall: Gamla hallen</div>
   </div>
 
@@ -170,7 +190,7 @@
   <div class="guide" id="guide">
     <h2>Guide för truckkontroll</h2>
     <p><strong>Syfte:</strong> Denna guide beskriver varför och hur dagliga kontroller av truckar ska utföras. Kontrollerna är ett lagkrav enligt AFS 2006:6 och en del av företagets kvalitets- och arbetsmiljöarbete enligt FR2000.</p>
-    <p><strong>Daglig kontroll:</strong> Kontrollera varje punkt nedan och markera “OK” eller “Anmärkning”. Vid anmärkning ska kommentar fyllas i. Avsluta med att signera kontrollen.</p>
+    <p><strong>Daglig kontroll:</strong> Kontrollera varje punkt och markera “OK” eller “Anmärkning”. Vid anmärkning ska kommentar fyllas i. Avsluta med att signera kontrollen.</p>
     <p><strong>Viktigt att veta:</strong> Daglig kontroll ska fyllas i varje dag trucken används. Om trucken inte används en dag ska det markeras som “Ej använd” i systemet – detta ansvarar föraren eller verksamhetsledaren för. Denna guide finns alltid via QR-koden i trucken.</p>
     <p><strong>Vid frågor eller fel på trucken:</strong> Kontakta Lars-Ove Carlson (Verksamhetsledare) 070-8307426.</p>
   </div>
